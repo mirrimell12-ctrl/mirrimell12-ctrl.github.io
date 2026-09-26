@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#071a35">
+  <meta name="description" content="Амфитеатр памяти — цифровой архив героев Самары школы № 68 имени В. П. Лезина.">
+  <title>Амфитеатр памяти — школа № 68</title>
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#heroes">К списку героев</a>
+  <header class="topbar">
+    <a class="brand" href="/" aria-label="На главную">
+      <span class="brand-mark" aria-hidden="true"><span>68</span></span>
+      <span><b>Амфитеатр памяти</b><small>Школа № 68 · Самара</small></span>
+    </a>
+    <nav class="desktop-nav" aria-label="Основная навигация">
+      <a href="#heroes">Герои</a><a href="#project">О проекте</a><a class="nav-action" href="/add-hero/">Добавить историю</a>
+    </nav>
+    <button class="menu-button" aria-label="Открыть меню" aria-expanded="false">☰</button>
+  </header>
+  <nav class="mobile-nav" hidden><a href="#heroes">Герои</a><a href="#project">О проекте</a><a href="/add-hero/">Добавить историю</a></nav>
+
+  <main>
+    <section class="home-hero" aria-labelledby="main-title">
+      <div class="hero-glow" aria-hidden="true"></div>
+      <div class="eyebrow"><span></span> Истории, которые остаются с нами</div>
+      <h1 id="main-title">Память живёт,<br><em>пока мы помним</em></h1>
+      <p>Цифровой архив героев, связанных с Самарой. Открывайте страницы с памятных плит, узнавайте судьбы и передавайте историю дальше.</p>
+      <div class="hero-actions"><a class="primary-button" href="#heroes">Найти героя <span>↓</span></a><a class="text-button" href="#project">Как устроен проект →</a></div>
+      <div class="hero-stats" aria-label="Статистика архива"><div><strong>8</strong><span>историй в архиве</span></div><div><strong>1</strong><span>школа — хранитель памяти</span></div><div><strong>∞</strong><span>возможностей дополнить</span></div></div>
+    </section>
+
+    <section class="explorer" id="heroes" aria-labelledby="heroes-title">
+      <div class="section-heading"><div><span class="section-number">01</span><h2 id="heroes-title">Герои Самары</h2></div><p>Начните вводить имя или выберите связь с городом.</p></div>
+      <div class="search-row">
+        <label class="search-box"><span aria-hidden="true">⌕</span><input id="hero-search" type="search" placeholder="Имя, событие или место…" autocomplete="off"></label>
+        <div class="filters" role="group" aria-label="Фильтр"><button class="filter active" data-filter="all">Все</button><button class="filter" data-filter="born">Родились здесь</button><button class="filter" data-filter="worked">Жили и работали</button></div>
+      </div>
+      <div class="hero-grid" id="hero-grid"></div>
+      <p class="empty-state" id="empty-state" hidden>По вашему запросу пока ничего не найдено.</p>
+    </section>
+
+    <section class="project" id="project" aria-labelledby="project-title">
+      <div class="project-card">
+        <div><span class="section-number light">02</span><h2 id="project-title">От памятной плиты<br>к живой истории</h2></div>
+        <div class="project-copy"><p>Каждый QR-код ведёт на отдельную страницу героя: подробную биографию, ключевые даты, описание подвига, награды и память.</p><ol><li><span>01</span>Наведите камеру на QR-код</li><li><span>02</span>Откройте историю героя</li><li><span>03</span>Изучите весь материал на одной странице</li></ol><a class="light-button" href="/add-hero/">Предложить новую историю →</a></div>
+      </div>
+    </section>
+  </main>
+  <footer><span>© 2026 МБОУ «Школа № 68» г.о. Самара</span><span>Имени Героя Советского Союза В. П. Лезина</span></footer>
+  <script src="assets/data.js"></script><script src="assets/app.js"></script>
+</body>
+</html>

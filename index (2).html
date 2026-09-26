@@ -1,0 +1,24 @@
+(() => {
+  const root = document.getElementById('hero-page');
+  const id = root.dataset.hero;
+  const hero = HEROES.find(item => item.id === id);
+  if (!hero) return;
+  document.title = `${hero.name} — Амфитеатр памяти`;
+  document.querySelectorAll('[data-name]').forEach(el => el.textContent = hero.name);
+  document.querySelector('[data-years]').textContent = hero.years;
+  document.querySelector('[data-role]').textContent = hero.role;
+  document.querySelector('[data-initials]').textContent = hero.initials;
+  document.querySelector('[data-lead]').textContent = hero.lead;
+  document.querySelector('[data-facts]').innerHTML = hero.facts.map(([label,value]) => `<div><small>${label}</small><strong>${value}</strong></div>`).join('');
+  document.querySelector('[data-bio]').innerHTML = hero.bio.map(p => `<p>${p}</p>`).join('');
+  document.querySelector('[data-events]').innerHTML = hero.events.map((e,i) => `<li><span class="time-dot">${String(i+1).padStart(2,'0')}</span><div><time>${e.date}</time><p>${e.text}</p></div></li>`).join('');
+  document.querySelector('[data-feat-title]').textContent = hero.featTitle;
+  document.querySelector('[data-feat]').innerHTML = hero.feat.map(p => `<p>${p}</p>`).join('');
+  document.querySelector('[data-awards]').innerHTML = hero.awards.map((award,i) => `<article class="award-card"><span>${String(i+1).padStart(2,'0')}</span><div><h3>${award.name}</h3><time>${award.date}</time><p>${award.reason}</p></div></article>`).join('');
+  document.querySelector('[data-memory]').innerHTML = hero.memory.map(item => `<li>${item}</li>`).join('');
+  document.querySelector('[data-sources]').innerHTML = hero.sources.map((s,i) => `<div><span>${String(i+1).padStart(2,'0')}</span><p>${s}</p></div>`).join('');
+  const all = HEROES; const index = all.findIndex(h => h.id === id); const next = all[(index + 1) % all.length];
+  const nextLink = document.querySelector('[data-next]'); nextLink.href = `/heroes/${next.id}/`; nextLink.querySelector('b').textContent = next.name;
+  const copy = document.querySelector('[data-copy-link]');
+  copy.addEventListener('click', async () => { try { await navigator.clipboard.writeText(location.href); copy.textContent='Ссылка скопирована ✓'; } catch { copy.textContent='Скопируйте адрес страницы'; } });
+})();

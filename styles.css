@@ -1,0 +1,77 @@
+(() => {
+  const form = document.getElementById('hero-form');
+  const fields = [...form.elements].filter(element => element.name);
+  const value = name => form.elements[name].value.trim();
+  const lines = name => value(name).split('\n').map(line => line.trim()).filter(Boolean);
+
+  function data() {
+    return {
+      name: value('name'), years: value('years'), role: value('role'),
+      connection: value('connection'), biography: value('bio'), feat: value('feat'),
+      awards: lines('awards').map(line => {
+        const [date, name, ...reason] = line.split('|');
+        return { date: date.trim(), name: (name || '').trim(), reason: reason.join('|').trim() };
+      }),
+      events: lines('events').map(line => {
+        const [date, ...description] = line.split('|');
+        return { date: date.trim(), text: description.join('|').trim() };
+      }),
+      memory: lines('memory'), sources: lines('sources'),
+      website: value('website'), accepted: form.elements.accepted.checked
+    };
+  }
+
+  function preview() {
+    document.getElementById('preview-name').textContent = value('name') || 'Имя нового героя';
+    document.getElementById('preview-years').textContent =
+      [value('years'), value('role'), value('connection')].filter(Boolean).join(' · ') ||
+      'Годы жизни · звание · связь с Самарой';
+    document.getElementById('preview-bio').textContent = value('bio') ||
+      'Здесь появится начало подробной биографии. Перед публикацией редактор проверит источники.';
+    const list = document.getElementById('preview-events');
+    list.replaceChildren();
+    const events = data().events;
+    if (!events.length) {
+      const item = document.createElement('li');
+      item.textContent = 'Ключевые события появятся здесь';
+      list.append(item);
+    } else {
+      for (const event of events) {
+        const item = document.createElement('li');
+        const date = document.createElement('b');
+        date.textContent = event.date;
+        item.append(date, document.createTextNode(event.text ? ' — ' + event.text : ''));
+        list.append(item);
+      }
+    }
+  }
+
+  function notice(message, ok = false) {
+    const box = document.getElementById('submission-status');
+    box.textContent = message;
+    box.className = 'submission-status' + (ok ? ' success' : '');
+    box.hidden = false;
+    box.focus();
+  }
+
+  function downloadCopy() {
+    const blob = new Blob([JSON.stringify(data(), null, 2)], { type: 'application/json' });
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = (value('name') || 'new-hero').toLowerCase().replace(/[^а-яa-z0-9]+/gi, '-') + '.json';
+    link.click();
+    setTimeout(() => URL.revokeObjectURL(link.href), 1000);
+  }
+
+  fields.forEach(field => field.addEventListener('input', preview));
+  form.addEventListener('reset', () => setTimeout(preview));
+  form.addEventListener('submit', event => {
+    event.preventDefault();
+    notice('Онлайн-отправка пока подключается. Скачайте копию карточки и передайте её координатору проекта в школе.');
+  });
+  document.getElementById('download-copy').addEventListener('click', downloadCopy);
+  document.getElementById('copy-template').addEventListener('click', async () => {
+    try { await navigator.clipboard.writeText(JSON.stringify(data(), null, 2)); notice('Данные скопированы.', true); }
+    catch { notice('Копирование недоступно. Скачайте копию карточки.'); }
+  });
+})();
