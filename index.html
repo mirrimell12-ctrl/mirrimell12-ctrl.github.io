@@ -57,6 +57,22 @@
 .submission-consent{margin:1.1rem 0;color:var(--ink);font-size:.92rem;line-height:1.5}.submission-consent label{display:flex;gap:.6rem;align-items:flex-start}.submission-consent input{margin-top:.25rem;flex:none}.submission-status{padding:.9rem 1rem;margin:1rem 0 0;border:1px solid #b6693f;border-radius:.6rem;color:var(--ink)}.submission-status.success{border-color:#98cbb2;background:#124a43;color:#fff}.submission-status[hidden]{display:none}
 
 [hidden] { display: none !important; }
+.form-page .topbar, .form-page .mobile-nav { color: var(--ink); }
+.story-invite{margin-top:46px;display:grid;grid-template-columns:1.2fr .8fr;background:#f7f3ec;color:var(--ink);box-shadow:0 28px 70px rgba(0,0,0,.18)}
+.story-invite__main{padding:clamp(28px,5vw,64px)}
+.story-invite__main .kicker{color:#936624;letter-spacing:.16em;text-transform:uppercase;font-size:11px}
+.story-invite__main h2{max-width:650px;margin:24px 0;font:400 clamp(32px,4vw,58px)/1.05 var(--serif)}
+.story-invite__main p{max-width:610px;color:#4c5a69;font-size:16px;line-height:1.75}
+.story-invite__button{display:inline-flex;align-items:center;gap:22px;margin-top:25px;padding:18px 24px;background:var(--ink);color:#fff;text-decoration:none;font-size:13px;letter-spacing:.03em;transition:background .2s,transform .2s}
+.story-invite__button:hover,.story-invite__button:focus-visible{background:#244773;transform:translateY(-2px)}
+.story-invite__button span{font-size:22px;color:var(--gold)}
+.story-invite__aside{padding:clamp(28px,4vw,52px);background:#e9e2d7}
+.story-invite__aside h3{margin:0 0 22px;font:400 28px/1.2 var(--serif)}
+.story-invite__aside ol{list-style:none;padding:0;margin:0}
+.story-invite__aside li{display:grid;grid-template-columns:30px 1fr;gap:14px;border-top:1px solid rgba(7,26,53,.15);padding:19px 0;color:#405066;font-size:14px;line-height:1.5}
+.story-invite__aside li b{color:#936624;font-size:12px;font-weight:400}
+.form-shell .story-footnote{margin-top:26px;color:#b9c5d4;font-size:13px;line-height:1.65}
+@media(max-width:750px){.story-invite{grid-template-columns:1fr}.form-shell{padding-top:48px}.story-invite__button{width:100%;justify-content:space-between}}
 
 </style>
 </head>
@@ -108,9 +124,25 @@
 <section class="feat-section" id="feat"><div class="feat-intro"><span class="section-number light">02</span><p class="overline">Главный подвиг и вклад</p><h2 data-feat-title></h2><div class="feat-copy" data-feat></div></div><div class="awards-panel" id="awards"><span class="section-number light">03</span><h2>Награды</h2><p class="panel-note">Указано не только название награды, но и основание для её вручения.</p><div class="awards-list" data-awards></div></div></section>
 <section class="legacy-section" id="memory"><div class="legacy-grid"><div><span class="section-number">04</span><h2>Память<br>о герое</h2><ul class="memory-list" data-memory></ul></div><div><span class="section-number">05</span><h2>На чём основан материал</h2><p class="source-note">Все необходимые сведения уже собраны на этой странице. Список приведён для прозрачности и проверки школьным музеем — переходить на другие сайты не требуется.</p><div class="source-list" data-sources></div></div></div></section>
 <a class="next-hero" data-next href="#"><span>Следующая история</span><b></b><strong>→</strong></a></main>
-  <main class="form-shell" id="form-page" hidden><div class="eyebrow"><span></span> Шаблон новой страницы</div><h1>Добавить<br><em>историю</em></h1><p>Расскажите о герое вашей семьи: справа появится предварительный вариант. Онлайн-приём историй сейчас подключается. Заполненную карточку можно сохранить и передать координатору проекта в школе.</p>
-<div class="editor"><form class="hero-form" id="hero-form"><div hidden aria-hidden="true"><label for="website">Сайт</label><input id="website" name="website" tabindex="-1" autocomplete="off"></div><div class="form-grid"><div class="field"><label for="name">Полное имя *</label><input id="name" name="name" required placeholder="Фамилия Имя Отчество"></div><div class="field"><label for="years">Годы жизни *</label><input id="years" name="years" required placeholder="1900—1970"></div><div class="field full"><label for="role">Звание и должность *</label><input id="role" name="role" required placeholder="Воинское звание · должность"></div><div class="field full"><label for="connection">Связь с Самарой *</label><input id="connection" name="connection" required placeholder="Родился, учился, работал, жил…"></div><div class="field full"><label for="bio">Подробная биография *</label><textarea id="bio" name="bio" required placeholder="Детство, учёба, работа, служба и послевоенная судьба — только проверенные сведения"></textarea></div><div class="field full"><label for="feat">Подвиг или ключевой боевой эпизод *</label><textarea id="feat" name="feat" required placeholder="Когда и где произошло событие, задача подразделения и вклад героя"></textarea></div><div class="field full"><label for="awards">Награды и основания *</label><textarea id="awards" name="awards" required placeholder="Одна строка — одна награда: дата | название | за что вручена"></textarea></div><div class="field full"><label for="events">Ключевые события</label><textarea id="events" name="events" placeholder="Одна строка — одно событие: дата | событие"></textarea></div><div class="field full"><label for="memory">Память о герое</label><textarea id="memory" name="memory" placeholder="Одна строка — один памятный объект, улица, школа или музей"></textarea></div><div class="field full"><label for="sources">Материалы и источники *</label><textarea id="sources" name="sources" required placeholder="Один архивный документ, справочник или музейный материал на строку"></textarea></div></div><div class="submission-consent"><label><input type="checkbox" name="accepted" required> Я передаю материалы редакции проекта для проверки и подтверждаю, что не указываю личные данные живущих людей без их согласия.</label></div><div class="template-actions"><button type="button" disabled title="Онлайн-приём историй подключается">Онлайн-отправка скоро появится</button><button class="secondary" type="button" id="download-copy">Скачать копию .json</button><button class="secondary" type="button" id="copy-template">Скопировать данные</button><button class="secondary" type="reset">Очистить</button></div><p id="submission-status" class="submission-status" role="status" tabindex="-1" hidden></p></form>
-<aside class="preview-card" aria-live="polite"><small>Предпросмотр</small><h2 id="preview-name">Имя нового героя</h2><div class="preview-years" id="preview-years">Годы жизни · звание · связь с Самарой</div><p class="preview-text" id="preview-bio">Здесь появится начало подробной биографии. После проверки редактор сможет создать отдельную страницу и QR-ссылку.</p><ul class="preview-list" id="preview-events"><li>Ключевые события появятся здесь</li></ul></aside></div><p class="notice">Редактор проверит факты и источники перед публикацией. Сохраните копию карточки и передайте её координатору проекта в школе.</p></main>
+  <main class="form-shell" id="form-page" hidden>
+    <div class="eyebrow"><span></span> Семейные истории Самары</div>
+    <h1>Добавить<br><em>историю</em></h1>
+    <p>Память о городе складывается из историй людей. Расскажите о герое своей семьи, чтобы его имя и вклад могли узнать другие.</p>
+    <section class="story-invite" aria-labelledby="story-invite-title">
+      <div class="story-invite__main">
+        <div class="kicker">Ваш голос в истории города</div>
+        <h2 id="story-invite-title">Чья история должна быть услышана?</h2>
+        <p>Назовите героя, опишите его связь с Самарой и поделитесь тем, что известно о его жизни и заслугах. Если у вас сохранились фотографии и документы, добавьте их в форму.</p>
+        <a class="story-invite__button" href="https://forms.yandex.ru/u/6ab822e595add540bfe3d3bd/" target="_blank" rel="noopener noreferrer">Открыть форму «Предложить героя» <span aria-hidden="true">↗</span></a>
+      </div>
+      <aside class="story-invite__aside"><h3>Как это работает</h3><ol>
+        <li><b>01</b><span>Вы рассказываете о герое в форме.</span></li>
+        <li><b>02</b><span>Команда проекта проверяет факты и материалы.</span></li>
+        <li><b>03</b><span>После проверки и согласования история может появиться на сайте.</span></li>
+      </ol></aside>
+    </section>
+    <p class="story-footnote">Отправка формы не означает автоматической публикации. Укажите только те сведения и материалы, которые вы вправе передать проекту.</p>
+  </main>
   <footer><span>© 2026 МБОУ «Школа № 68» г.о. Самара</span><span>Имени Героя Советского Союза В. П. Лезина</span></footer>
   <script>
 window.HEROES = [
@@ -345,85 +377,6 @@ window.HEROES = [
 })();
 
 </script>
-<script>
-(() => {
-  const form = document.getElementById('hero-form');
-  const fields = [...form.elements].filter(element => element.name);
-  const value = name => form.elements[name].value.trim();
-  const lines = name => value(name).split('\n').map(line => line.trim()).filter(Boolean);
 
-  function data() {
-    return {
-      name: value('name'), years: value('years'), role: value('role'),
-      connection: value('connection'), biography: value('bio'), feat: value('feat'),
-      awards: lines('awards').map(line => {
-        const [date, name, ...reason] = line.split('|');
-        return { date: date.trim(), name: (name || '').trim(), reason: reason.join('|').trim() };
-      }),
-      events: lines('events').map(line => {
-        const [date, ...description] = line.split('|');
-        return { date: date.trim(), text: description.join('|').trim() };
-      }),
-      memory: lines('memory'), sources: lines('sources'),
-      website: value('website'), accepted: form.elements.accepted.checked
-    };
-  }
-
-  function preview() {
-    document.getElementById('preview-name').textContent = value('name') || 'Имя нового героя';
-    document.getElementById('preview-years').textContent =
-      [value('years'), value('role'), value('connection')].filter(Boolean).join(' · ') ||
-      'Годы жизни · звание · связь с Самарой';
-    document.getElementById('preview-bio').textContent = value('bio') ||
-      'Здесь появится начало подробной биографии. Перед публикацией редактор проверит источники.';
-    const list = document.getElementById('preview-events');
-    list.replaceChildren();
-    const events = data().events;
-    if (!events.length) {
-      const item = document.createElement('li');
-      item.textContent = 'Ключевые события появятся здесь';
-      list.append(item);
-    } else {
-      for (const event of events) {
-        const item = document.createElement('li');
-        const date = document.createElement('b');
-        date.textContent = event.date;
-        item.append(date, document.createTextNode(event.text ? ' — ' + event.text : ''));
-        list.append(item);
-      }
-    }
-  }
-
-  function notice(message, ok = false) {
-    const box = document.getElementById('submission-status');
-    box.textContent = message;
-    box.className = 'submission-status' + (ok ? ' success' : '');
-    box.hidden = false;
-    box.focus();
-  }
-
-  function downloadCopy() {
-    const blob = new Blob([JSON.stringify(data(), null, 2)], { type: 'application/json' });
-    const link = document.createElement('a');
-    link.href = URL.createObjectURL(blob);
-    link.download = (value('name') || 'new-hero').toLowerCase().replace(/[^а-яa-z0-9]+/gi, '-') + '.json';
-    link.click();
-    setTimeout(() => URL.revokeObjectURL(link.href), 1000);
-  }
-
-  fields.forEach(field => field.addEventListener('input', preview));
-  form.addEventListener('reset', () => setTimeout(preview));
-  form.addEventListener('submit', event => {
-    event.preventDefault();
-    notice('Онлайн-отправка пока подключается. Скачайте копию карточки и передайте её координатору проекта в школе.');
-  });
-  document.getElementById('download-copy').addEventListener('click', downloadCopy);
-  document.getElementById('copy-template').addEventListener('click', async () => {
-    try { await navigator.clipboard.writeText(JSON.stringify(data(), null, 2)); notice('Данные скопированы.', true); }
-    catch { notice('Копирование недоступно. Скачайте копию карточки.'); }
-  });
-})();
-
-</script>
 </body>
 </html>
